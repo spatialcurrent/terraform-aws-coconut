@@ -58,3 +58,35 @@ module "website" {
   error_document = ""
   routing_rules  = ""
 }
+
+data "aws_iam_policy_document" "s3_write" {
+  statement {
+    actions = [
+      "s3:ListBucket",
+    ]
+
+    resources = [
+      "${module.website.s3_bucket_arn}",
+    ]
+  }
+
+  statement {
+    actions = [
+      "s3:PutObject",
+      "s3:GetObjectVersionAcl",
+      "s3:GetObjectVersion",
+      "s3:GetObjectAcl",
+      "s3:GetObject",
+    ]
+
+    resources = [
+      "${module.website.s3_bucket_arn}/*",
+    ]
+  }
+}
+
+resource "aws_iam_policy" "s3_write" {
+  name   = "${var.iam_policy_s3_write}"
+  path   = "/"
+  policy = "${data.aws_iam_policy_document.s3_write.json}"
+}

@@ -28,8 +28,8 @@ module "production" {
 | cloudfront\_origin\_id |  | string | n/a | yes |
 | environment |  | string | n/a | yes |
 | fqdn |  | string | n/a | yes |
+| iam\_policy\_s3\_write |  | string | n/a | yes |
 | route53\_zone\_id |  | string | n/a | yes |
-| route53\_zone\_name |  | string | n/a | yes |
 | s3\_bucket\_name |  | string | n/a | yes |
 | s3\_logs\_bucket\_id |  | string | n/a | yes |
 | s3\_logs\_prefix |  | string | n/a | yes |

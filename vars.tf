@@ -15,3 +15,5 @@ variable "s3_bucket_name" {}
 variable "s3_logs_bucket_id" {}
 
 variable "s3_logs_prefix" {}
+
+variable "iam_policy_s3_write" {}
