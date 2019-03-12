@@ -1,12 +1,13 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-Creates an instance of Coconut
+Creates an instance of Coconut hosted on S3 and served from CloudFront.
 
 Creates the following resources:
 
 * ACM Certificate
+* S3 Bucket
 * CloudFront Distribution
 * Route53 Records
-* S3 Bucket
+* IAM Policy to Write Updates
 
 ## Usage
 

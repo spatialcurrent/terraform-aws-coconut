@@ -1,12 +1,13 @@
 /**
- * Creates an instance of Coconut
+ * Creates an instance of Coconut hosted on S3 and served from CloudFront.
  *
  * Creates the following resources:
  *
  * * ACM Certificate
+ * * S3 Bucket
  * * CloudFront Distribution
  * * Route53 Records
- * * S3 Bucket
+ * * IAM Policy to publish updates
  *
 
  * ## Usage
@@ -28,7 +29,7 @@ module "website" {
 
   cloudfront_tags                 = "${map("Environment", "${var.environment}")}"
   cloudfront_comment              = "${var.cloudfront_comment}"
-  cloudfront_origin_read_timeout  = 30
+  cloudfront_origin_read_timeout  = 5
   cloudfront_origin_ssl_protocols = ["TLSv1", "TLSv1.1", "TLSv1.2"]
 
   route53_zone_id = "${var.route53_zone_id}"
@@ -39,7 +40,7 @@ module "website" {
 
   # CloudFront expects the bucket domain name
   cloudfront_logs_bucket_domain_name = "${var.cloudfront_logs_bucket_domain_name}"
-  cloudfront_forwarded_query_strings = false
+  cloudfront_forwarded_query_strings = true # send query strings so browser knows when to get updates
 
   cloudfront_404_response_code = 200
   cloudfront_404_response_path = "/index.html"
